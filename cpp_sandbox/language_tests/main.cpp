@@ -24,6 +24,9 @@ struct vec
 	T v[COUNT];
 };
 
+void foo(int a, int b, int c) {}
+void foo(std::initializer_list<int> l) {}
+
 int main(int argc, char* argv[]) {
 
 	auto i = 42;
@@ -64,6 +67,8 @@ int main(int argc, char* argv[]) {
 	using array_10i = int[10];
 
 	array_10i arr10 = {};
+	// VS gives me a warning that arr10[10] is reading from an invalid source, 
+	// so that's awesome!
 	std::cout << arr10[0] << ' ' << arr10[10] << std::endl;
 	auto arr = new array_10i;
 
@@ -72,6 +77,9 @@ int main(int argc, char* argv[]) {
 	using vec3f = vec<float, 3>();
 	using vec4f = vec<float, 4>();
 	using vec4d = vec<double, 4>();
+
+	// initialiser list is a little different to what I remember
+	foo({ 1, 2, 3 });
 
 	return 0;
 }
